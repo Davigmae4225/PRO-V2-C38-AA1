@@ -38,6 +38,7 @@ class Game {
   }
 
   play() {
+    console.log("teste1")
     this.handleElements();
 
     Player.getPlayersInfo();
@@ -50,13 +51,19 @@ class Game {
       for (var plr in allPlayers) {
         //adicione 1 ao índice para cada loop
         index = index + 1;
-
+       console.log("index1: "+index)
         //use os dados do banco de dados para exibir os carros nas direções x e y
         var x = allPlayers[plr].positionX;
         var y = height - allPlayers[plr].positionY;
-
+        console.log("index2: "+index)
         cars[index - 1].position.x = x;
         cars[index - 1].position.y = y;
+        if (index===player.index) {
+          stroke(10);
+          fill("blue");
+          ellipse(x,y,60);
+      
+        }
       }
 
       this.handlePlayerControls();
