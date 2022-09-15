@@ -8,8 +8,16 @@ class Player {
     this.score = 0;
     this.life = 100;
     this.full = 180;
+    this.hank=0;
   }
-
+  getCars(){
+    database.ref("hank").on("value",(data)=>{this.hank=data.val()})
+  
+  }
+  static updatecars (hank){
+    database.ref("/").update({hank:hank})
+  }
+  
   addPlayer() {
     var playerIndex = "players/player" + this.index;
 
@@ -19,6 +27,7 @@ class Player {
       this.positionX = width / 2 + 100;
     }
 
+    
     database.ref(playerIndex).set({
       name: this.name,
       positionX: this.positionX,
@@ -27,7 +36,7 @@ class Player {
       full: this.full,
       life: this.life,
       placar: this.placar,
-
+      hank:this.hank,
     });
   }
 
